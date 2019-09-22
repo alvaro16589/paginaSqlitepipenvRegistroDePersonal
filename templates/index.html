@@ -8,38 +8,84 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='estilos.css') }} ">
     <title>Registro de Usuarios</title>
 </head>
-<body>
+<body class="fondo">
     <header class="container">
        <div class="display-4 row justify-content-center p-4 cabecera">
            
-           <div class=" col-md-6">
+           <div class="col-md-6">
                <h1>Registro de Usuarios</h1>
            </div>
            
        </div>
     </header>
     <div class="container">
-        <div class="row card">
-            <div class="col-12 card-header ">
-                Usuario
+        <form class="form-group" action="/crearprop" method="POST">
+            <div class="row">
+                <div class="col-sm-9 col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            PROPIETARIO
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Formulario para el registro</h5>
+                            <p class="card-text">Complete los espacios con sumo cuidado</p>
+                            <label for="nomb">Nombre(s): </label>
+                            <input id="nomb" class="form-control" type="text" name="nomb" placeholder="Ingrese su nombre ej: 'juans'">
+                            <label for="ape">Apellido(s): </label>
+                            <input id="ape" class="form-control" type="text" name="ape" placeholder="Ingrese su apellido ej: 'Perez'">
+                            <label for="telf">Teléfono: </label>
+                            <input id="telf" class="form-control" type="text" name="telf" placeholder="Ingrese su teléfono ej: '70000000'">
+                            <label for="anio">Año de nacimiento: </label>
+                            <input id="anio" class="form-control" type="text" name="anio" placeholder="Ingrese su año de nacido ej: '1989'">
+                            <label for="sxo">Sexo</label>
+                            <select name="sxo" id="sxo" class="custom-select" >
+                                <option selected="">Elija su sexo</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="S">Sempai</option>
+                            </select>
+                        
+                        </div>        
+                    </div>
+                </div>
+                <div class="col-sm-9 col-md-6">
+                    <div class="card bg-primary">
+                        <div class="card-header">
+                                Listados de Registrados
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Lista de propietaros</h5>
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">sexo</th>
+                                    </tr>
+                                    <tbody>
+                                        {%for user in qryPropietarios%}
+                                        <tr class="table-secundary">
+                                            <th scope="row">{{user.nombre}}</th>
+                                            <td>{{user.apellido}}</td>
+                                            <td>{{user.telefono}}</td>
+                                            <td>{%if user.sexo=='M'%}
+                                                    Masculino
+                                                {%else%}
+                                                    Femenino
+                                                {%endif%}
+                                            </td>            
+                                        </tr>
+                                        {%endfor%}
+                                    </tbody>
+                                </thead>
+                            </table>       
+                        </div> 
+                    </div>
+                </div>
             </div>
-            <div class="col-5 card-body">
-                    <h5 class="card-title">Formulario para el registro</h5>
-                    <p class="card-text">Complete los espacios con sumo cuidado</p>
-                <form class="form-group" method="POST">
-                    <label for="nomb">Nombre(s): </label>
-                    <input id="nomb" class="form-control" type="text" name="" placeholder="Ingrese su nombre ej: 'juans'">
-                    <label for="ape">Apellido(s): </label>
-                    <input id="ape" class="form-control" type="text" name="" placeholder="Ingrese su apellido ej: 'Perez'">
-                    <label for="telf">Teléfono: </label>
-                    <input id="telf" class="form-control" type="text" name="" placeholder="Ingrese su teléfono ej: '70000000'">
-                    <label for="anio">Año de nacimiento: </label>
-                    <input id="anio" class="form-control" type="text" name="" placeholder="Ingrese su año de nacido ej: '1989'">
-                    <submit class="btn btn-primary m-4" >Registrar Usuario</submit>
-                </form>
-            </div>
-        </div>
-    
+            <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit>
+        </form>
     </div>
     
 </body>
