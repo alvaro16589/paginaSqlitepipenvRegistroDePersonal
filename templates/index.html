@@ -42,14 +42,14 @@
                                 <option selected="">Elija su sexo</option>
                                 <option value="M">Masculino</option>
                                 <option value="F">Femenino</option>
-                                <option value="S">Sempai</option>
                             </select>
                         
-                        </div>        
+                        </div>  
+                        <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit>      
                     </div>
                 </div>
                 <div class="col-sm-9 col-md-6">
-                    <div class="card bg-primary">
+                    <div class="card bg-secundary">
                         <div class="card-header">
                                 Listados de Registrados
                         </div>
@@ -61,20 +61,28 @@
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Apellido</th>
                                         <th scope="col">Telefono</th>
-                                        <th scope="col">sexo</th>
+                                        <th scope="col">Acciones</th>
+                                        <th scope="col"></th>
                                     </tr>
                                     <tbody>
                                         {%for user in qryPropietarios%}
-                                        <tr class="table-secundary">
+                                        <tr class="table-primary">
                                             <th scope="row">{{user.nombre}}</th>
                                             <td>{{user.apellido}}</td>
                                             <td>{{user.telefono}}</td>
-                                            <td>{%if user.sexo=='M'%}
-                                                    Masculino
+                                            <!--<td>{%if user.sexo=='M'%}
+                                                    Mas
                                                 {%else%}
-                                                    Femenino
+                                                    Fem
                                                 {%endif%}
-                                            </td>            
+                                            </td> --> 
+                                            <td>
+                                                <a href="" class="btn btn-sm btn-danger">Eliminar</a>
+                                               
+                                            </td>  
+                                            <td>
+                                                <a href="\mascotas\{{user.idpropietario}}" class="btn btn-sm btn-danger">Mascotas</a>
+                                            </td>        
                                         </tr>
                                         {%endfor%}
                                     </tbody>
@@ -84,7 +92,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit>
+           
         </form>
     </div>
     
