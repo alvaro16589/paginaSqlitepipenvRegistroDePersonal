@@ -12,11 +12,43 @@
                 <div class="display-4 row justify-content-center p-4 cabecera">
                     
                     <div class="col-md-6">
-                        <h1>Registro de Usuarios</h1>
+                        <h1>Registro de Mascotas</h1>
+                        <h5>
+                            {{propietario.nombre}}
+                            {{propietario.apellido}}
+                        </h5>
+                      
                     </div>
                     
                 </div>
         </header>
-        
+        <div class="container">
+            <form class="form-group" action="/crearmascota" method="POST">
+                <div class="row">
+                    <div class="col-auto col-sm-9 col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                            MASCOTAS
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Formulario para el registro para la mascota.</h5>
+                                <p class="card-text">Complete los espacios con sumo cuidado.</p>
+                                <label for="nombmas">Nombre(s): </label>
+                                <input id="nombmas" class="form-control" type="text" name="nombmas" placeholder="Ingrese el nombre de la mascota ej: 'Destructor'">
+                                <label for="aniomas">Año de nacimiento: </label>
+                                <input id="aniomas" class="form-control" type="text" name="aniomas" placeholder="Ingrese el año de nacido de la mascota ej: '2009'">
+                                <label for="sxomas">Sexo</label>
+                                <select name="sxomas" id="sxomas" class="custom-select" >
+                                    <option selected="">Elija su sexo de la mascota</option>
+                                    <option value="M">Macho</option>
+                                    <option value="H">Hembra</option>
+                                </select>        
+                            </div> 
+                            <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit> 
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
 </body>
 </html>

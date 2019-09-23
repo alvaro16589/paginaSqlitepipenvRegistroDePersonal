@@ -32,6 +32,11 @@ def crearpropietario():
     db.session.commit()#pone fin a la sesion de ingreso de datos
     return redirect(url_for('principal'))##redirecciona a una url que queramos en este caso home
 
+@app.route('/mascota/<idprop>')#direccionando a la pagina para ver las mascotas
+def verMacotas(idprop):
+    propie = tbpropietario.query.filter_by(idpropietario=int(idprop)).first()
+    db.session.commit()
+    return render_template('mascotas.html',propietario=propie)
 
 if __name__=='__main__':
     app.run(debug= True)#para que el servidor se inicie cada vez que exista un cambio en el archivo app.py ///codigo inicial

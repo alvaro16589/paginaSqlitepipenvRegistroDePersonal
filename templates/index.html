@@ -21,7 +21,7 @@
     <div class="container">
         <form class="form-group" action="/crearprop" method="POST">
             <div class="row">
-                <div class="col-sm-9 col-md-6">
+                <div class="col-auto col-sm-9 col-md-6">
                     <div class="card">
                         <div class="card-header">
                             PROPIETARIO
@@ -48,40 +48,40 @@
                         <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit>      
                     </div>
                 </div>
-                <div class="col-sm-9 col-md-6">
+                <div class="col-auto col-sm-9 col-md-6">
                     <div class="card bg-secundary">
                         <div class="card-header">
                                 Listados de Registrados
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Lista de propietaros</h5>
-                            <table class="table table-hover ">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido</th>
-                                        <th scope="col">Telefono</th>
-                                        <th scope="col">Acciones</th>
-                                        <th scope="col"></th>
+                            <table class="table table-hover">
+                                <thead >
+                                    <tr >
+                                        <th scope="col"  >Nombre</th>
+                                        <th scope="col" >Apellido</th>
+                                        <th scope="col" >Telefono</th>
+                                        <th scope="col" >Acciones</th>
+                                        <th scope="col" ></th>
                                     </tr>
-                                    <tbody>
+                                    <tbody  >
                                         {%for user in qryPropietarios%}
-                                        <tr class="table-primary">
-                                            <th scope="row">{{user.nombre}}</th>
-                                            <td>{{user.apellido}}</td>
-                                            <td>{{user.telefono}}</td>
+                                        <tr class="table-primary" >
+                                            <th scope="row" >{{user.nombre}}</th>
+                                            <td >{{user.apellido}}</td>
+                                            <td >{{user.telefono}}</td>
                                             <!--<td>{%if user.sexo=='M'%}
                                                     Mas
                                                 {%else%}
                                                     Fem
                                                 {%endif%}
                                             </td> --> 
-                                            <td>
+                                            <td > 
                                                 <a href="" class="btn btn-sm btn-danger">Eliminar</a>
                                                
                                             </td>  
-                                            <td>
-                                                <a href="\mascotas\{{user.idpropietario}}" class="btn btn-sm btn-danger">Mascotas</a>
+                                            <td >
+                                                <a href="\mascota\{{user.idpropietario}}" class="btn btn-sm btn-danger">Mascotas</a>
                                             </td>        
                                         </tr>
                                         {%endfor%}
