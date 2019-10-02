@@ -18,7 +18,7 @@ class tbmascota(db.Model):
     nombre = db.Column(db.String(20))
     anio = db.Column(db.Integer)
     sexo = db.Column(db.String(5))
-    idpropietario = db.Column(db.Integer,foreign_key=tbpropietario.idpropietario)
+    idprop = db.Column(db.Integer)
 
 @app.route('/')
 def principal():
@@ -32,11 +32,38 @@ def crearpropietario():
     db.session.commit()#pone fin a la sesion de ingreso de datos
     return redirect(url_for('principal'))##redirecciona a una url que queramos en este caso home
 
-@app.route('/mascota/<idprop>')#direccionando a la pagina para ver las mascotas
-def verMacotas(idprop):
+
+
+@app.route('/borrarprop/<idprop>')
+def borrarprop(idprop):
     propie = tbpropietario.query.filter_by(idpropietario=int(idprop)).first()
+    masc = tbmascota.query.filter_by(idprop=int(idprop))
+    db.session.delete(propie)
+    for i in masc:
+        db.session.delete(i)
     db.session.commit()
-    return render_template('mascotas.html',propietario=propie)
+    return redirect(url_for('principal'))
+
+@app.route('/crearmasc/<idpropi>',methods = ['POST'])
+def crearmascota(idpropi):
+    masco = tbmascota(nombre = request.form['nombmas'],anio = request.form['aniomas'],sexo = request.form['sxomas'],idprop =int(idpropi) )
+    db.session.add(masco)
+    db.session.commit()
+    return redirect(url_for('verMascotas',idprop=int(idpropi)))
+
+@app.route('/borrarmasc/<idmasc> <idpropi>')    
+def borrarmasco(idmasc,idpropi):
+    masc = tbmascota.query.filter_by(idmascota=int(idmasc)).first()
+    db.session.delete(masc)
+    db.session.commit()
+    return redirect(url_for('verMascotas',idprop=int(idpropi)))
+
+@app.route('/mascota/<idprop>')#direccionando a la pagina para ver las mascotas
+def verMascotas(idprop):
+    propie = tbpropietario.query.filter_by(idpropietario=int(idprop)).first()
+    revmascota = tbmascota.query.all()
+    db.session.commit()
+    return render_template('mascotas.html',propietario=propie,qrymascota=revmascota)
 
 if __name__=='__main__':
     app.run(debug= True)#para que el servidor se inicie cada vez que exista un cambio en el archivo app.py ///codigo inicial

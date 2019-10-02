@@ -13,7 +13,7 @@
                     
                     <div class="col-md-6">
                         <h1>Registro de Mascotas</h1>
-                        <h5>
+                        <h5 class="bg-danger">
                             {{propietario.nombre}}
                             {{propietario.apellido}}
                         </h5>
@@ -22,8 +22,28 @@
                     
                 </div>
         </header>
+        <div class="bs-docs-section clearfix">
+            <div class="bs-component">
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary m-4">
+                        MENÚ
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="true" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                    
+                        <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item   active  ">
+                            <a class="nav-link" href="/"> Inicio <span class="sr-only">(current)</span></a>
+                            </li>
+                        
+                        </ul>
+                        
+                        </div>
+                </nav>
+            </div>
+        </div>
         <div class="container">
-            <form class="form-group" action="/crearmascota" method="POST">
+            <form class="form-group" action="/crearmasc/{{propietario.idpropietario}}" method="POST">
                 <div class="row">
                     <div class="col-auto col-sm-9 col-md-6">
                         <div class="card">
@@ -33,6 +53,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">Formulario para el registro para la mascota.</h5>
                                 <p class="card-text">Complete los espacios con sumo cuidado.</p>
+                                
+                                
                                 <label for="nombmas">Nombre(s): </label>
                                 <input id="nombmas" class="form-control" type="text" name="nombmas" placeholder="Ingrese el nombre de la mascota ej: 'Destructor'">
                                 <label for="aniomas">Año de nacimiento: </label>
@@ -44,7 +66,46 @@
                                     <option value="H">Hembra</option>
                                 </select>        
                             </div> 
-                            <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit> 
+                            <button type="submit" class="btn btn-primary m-4" >Registrar Mascota</submit> 
+                        </div>
+                    </div>
+                    <div class="col-9 col-sm-9 col-md-6">
+                        <div class="card bg-secundary">
+                            <div class="card-header">
+                                    Listados de Registrados
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Lista de mascotas</h5>
+                                <table class="table table-hover">
+                                    <thead >
+                                        <tr >
+                                            <th scope="col" >Nombre</th>
+                                            <th scope="col" >Sexo</th>
+                                            <th scope="col" >Acción</th>
+                                            
+                                        </tr>
+                                        <tbody  >
+                                            {%for masc in qrymascota%}
+                                                {%if masc.idprop == propietario.idpropietario%}
+                                            <tr class="table-primary" >
+                                                <th scope="row" >{{masc.nombre}}</th>
+                                                <td>{%if masc.sexo=='M'%}
+                                                        Macho
+                                                    {%else%}
+                                                        Hembra
+                                                    {%endif%}
+                                                </td>
+                                                <td > 
+                                                    <a href="\borrarmasc\{{masc.idmascota}} {{propietario.idpropietario}}" class="btn btn-sm btn-danger">Eliminar</a>
+                                                   
+                                                </td>  
+                                            </tr>
+                                                {%endif%}
+                                            {%endfor%}
+                                        </tbody>
+                                    </thead>
+                                </table>       
+                            </div> 
                         </div>
                     </div>
                 </div>
