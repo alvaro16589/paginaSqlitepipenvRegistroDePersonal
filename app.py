@@ -32,8 +32,6 @@ def crearpropietario():
     db.session.commit()#pone fin a la sesion de ingreso de datos
     return redirect(url_for('principal'))##redirecciona a una url que queramos en este caso home
 
-
-
 @app.route('/borrarprop/<idprop>')
 def borrarprop(idprop):
     propie = tbpropietario.query.filter_by(idpropietario=int(idprop)).first()
@@ -41,6 +39,23 @@ def borrarprop(idprop):
     db.session.delete(propie)
     for i in masc:
         db.session.delete(i)
+    db.session.commit()
+    return redirect(url_for('principal'))
+
+@app.route('/actu/<idprop>')
+def actuaUsua(idprop):
+    propie = tbpropietario.query.filter_by(idpropietario = int(idprop)).first()
+    db.session.commit()
+    return render_template('actualizaru.html',propietario = propie)
+
+@app.route('/actualizarprop', methods = ['POST'])
+def actualizarprop():
+    propie = tbpropietario.query.filter_by(idpropietario = int(request.form['idu'])).first()
+    propie.nombre = request.form['nomb']
+    propie.apellido = request.form['ape']
+    propie.telefono = int(request.form['telf'])
+    propie.anio = int(request.form['anio'])
+    propie.sexo  = request.form['sxo']
     db.session.commit()
     return redirect(url_for('principal'))
 

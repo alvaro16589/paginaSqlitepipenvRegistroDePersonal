@@ -45,7 +45,7 @@
                             </select>
                         
                         </div>  
-                        <button type="submit" class="btn btn-primary m-4" >Registrar Usuario</submit>      
+                        <button type="submit" class="btn btn-primary m-4">Registrar Usuario</button>      
                     </div>
                 </div>
                 <div class="col-auto col-sm-9 col-md-6">
@@ -61,7 +61,8 @@
                                         <th scope="col"  >Nombre</th>
                                         <th scope="col" >Apellido</th>
                                         <th scope="col" >Telefono</th>
-                                        <th scope="col" >Acciones</th>
+                                        <th scope="col" ></th>
+                                        <th scope="col" ></th>
                                         <th scope="col" ></th>
                                     </tr>
                                     <tbody  >
@@ -77,9 +78,11 @@
                                                 {%endif%}
                                             </td> --> 
                                             <td > 
-                                                <a href="\borrarprop\{{user.idpropietario}}" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                                               
-                                            </td>  
+                                                <a href="\borrarprop\{{user.idpropietario}}" class="btn btn-sm btn-outline-danger">E</a>                                                
+                                            </td> 
+                                            <td>
+                                                <a href="\actu\{{user.idpropietario}}" class="btn btn-sm btn-outline-warning" >A</a>
+                                            </td> 
                                             <td >
                                                 <a href="\mascota\{{user.idpropietario}}" class="btn btn-sm btn-success">Mascotas</a>
                                             </td>        
